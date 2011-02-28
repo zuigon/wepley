@@ -1,0 +1,27 @@
+<h1>wepley ...</h1>
+
+<object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,0,0" width="165" height="38" id="niftyPlayer1" align="">
+<param name=movie value="np/niftyplayer.swf?file=<%= x=URI.escape Song.last.file.to_s[/(.+)\?/, 1] %>"><param name=quality value=high><param name=bgcolor value=#FFFFFF>
+<embed src="np/niftyplayer.swf?file=<%= x %>" quality=high bgcolor=#FFFFFF width="165" height="38" name="nP1" align="" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer">
+</embed>
+</object>
+
+<table>
+  <tr>
+    <th></th>
+    <th width=250></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @songs.each do |song| %>
+  <tr>
+    <td><%= link_to 'Play', "javascript:niftyplayer('nP1').load('#{song.file.to_s[/(.+)\?/, 1]}')" %></td>
+    <td><center><%= song.ime %></center></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'Posalji novu pjesmu', new_song_path %>
